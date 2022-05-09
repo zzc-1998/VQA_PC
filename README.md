@@ -1,7 +1,7 @@
 # VQA_PC
 Treating point cloud as mving camera videos: a no-reference quality assessment metric 
-
-![image]（https://github.com/zzc-1998/VQA_PC/blob/main/video.gif）
+<img align="right" src="https://github.com/zzc-1998/VQA_PC/video.gif">
+<img align="right" src="https://github.com/zzc-1998/VQA_PC/blob/main/video.gif">
 
 ## Environment Settings
 We test the code with Python 3.7 (and higher) on the Windows platform and the code can run on linux as well.
