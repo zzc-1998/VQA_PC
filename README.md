@@ -1,5 +1,5 @@
 # VQA_PC
-Treating point cloud as mving camera videos: a no-reference quality assessment metric 
+Treating point cloud as moving camera videos: a no-reference quality assessment metric 
 
 <img align="center" src="https://github.com/zzc-1998/VQA_PC/blob/main/video.gif">
 
