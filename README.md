@@ -22,4 +22,11 @@ parser.add_argument('--video_path', type=str, default = './videos/') # path to t
 By running this demo, you wil get three output folders. **imgs** contain 4 2D inputs with resolution of 1920x1061. **frames** contain 120 frames with resized resolution of 405x224. **videos** contain the videos generated from the frames.
 
 ## Extracting SlowFast Features
-To avoid compression loss, we suggest extracting 3D features directly from the rendered frames.
+We suggest extracting 3D features directly from the rendered frames. Use the **SlowFast_feature_extract.py** in the extraction folder to extarct *fast* features. If the **rotation.py** is used, the *frames_dir* should be the *path to ./rotation/frames/*.
+```
+parser.add_argument('--num_workers', type=int, default=4)
+parser.add_argument('--resize', type=int, default=224)
+parser.add_argument('--frames_dir', type=str, default='path to frames') # if you use the rotation.py, here should be path to the 'path to ./rotation/frames/'
+parser.add_argument('--feature_save_folder', type=str, default='./features/') #path to save fast features
+```
+
