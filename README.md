@@ -10,7 +10,8 @@ You should install the python package open3d and pytorch >= 1.6.
 
 ## Start with Generating 2D Inputs and Frames
 Use the **rotation.py** in folder **rotation**. We have prepared two .ply samples for test. You can simply run the **rotation.py** with default parameters for test. The **rotation.py** should generate the 2D Inputs, frames, and videos in the *./imgs*, *./frames*, and *./videos* located in the same dir as **rotation.py**.
-Change the necessray input and output as illustrated:
+
+To test with your data, please change the necessray input and output as illustrated:
 
 ```
 parser.add_argument('--path', type=str, default = './ply/') #path to the file that contain .ply models
