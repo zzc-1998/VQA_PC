@@ -18,7 +18,7 @@ class Dataset_slowfast_feature(data.Dataset):
     """Read data from the frames for feature extraction"""
     def __init__(self, data_dir, transform, resize):
         super(Dataset_slowfast_feature, self).__init__()
-        self.videos_dir = data_dir
+        self.frames_dir = data_dir
         self.video_names = os.listdir(data_dir)
         self.transform = transform
         self.resize = resize
@@ -45,7 +45,7 @@ class Dataset_slowfast_feature(data.Dataset):
         
         for i in range(video_length):
             img_name = str(i+1).zfill(3) + '.png'
-            filename=os.path.join(self.videos_dir, video_name, img_name)
+            filename=os.path.join(self.frames_dir, video_name, img_name)
             read_frame = Image.fromarray(cv2.cvtColor(cv2.imread(filename), cv2.COLOR_BGR2RGB))
             read_frame = self.transform(read_frame)
             transformed_frame_all[i] = read_frame
@@ -165,7 +165,7 @@ if __name__ == '__main__':
 
     parser.add_argument('--num_workers', type=int, default=4)
     parser.add_argument('--resize', type=int, default=224)
-    parser.add_argument('--videos_dir', type=str, default='D:/IQA_files/video-pointcloud/github_version/rotation/frames/') # if you use the rotation.py, here should be path to the 'path to ./rotation/frames/'
+    parser.add_argument('--frames_dir', type=str, default='path to frames') # if you use the rotation.py, here should be path to the 'path to ./rotation/frames/'
     parser.add_argument('--feature_save_folder', type=str, default='./features/') #path to save fast features
 
     config = parser.parse_args()
