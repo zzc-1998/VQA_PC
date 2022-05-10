@@ -135,10 +135,10 @@ def main(config):
         
     ## loading data
     resize = config.resize
-    videos_dir = config.videos_dir
+    frames_dir = config.frames_dir
     transformations_test = transforms.Compose([transforms.CenterCrop([resize, resize]),transforms.ToTensor(),\
         transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])])
-    trainset = Dataset_slowfast_feature(videos_dir, transformations_test, resize)
+    trainset = Dataset_slowfast_feature(frames_dir, transformations_test, resize)
     ## dataloader
     train_loader = torch.utils.data.DataLoader(trainset, batch_size=1,
         shuffle=False, num_workers=config.num_workers)
@@ -165,7 +165,7 @@ if __name__ == '__main__':
 
     parser.add_argument('--num_workers', type=int, default=4)
     parser.add_argument('--resize', type=int, default=224)
-    parser.add_argument('--frames_dir', type=str, default='path to frames') # if you use the rotation.py, here should be path to the 'path to ./rotation/frames/'
+    parser.add_argument('--frames_dir', type=str, default='') # if you use the rotation.py, here should be path to the 'path to ./rotation/frames/'
     parser.add_argument('--feature_save_folder', type=str, default='./features/') #path to save fast features
 
     config = parser.parse_args()
