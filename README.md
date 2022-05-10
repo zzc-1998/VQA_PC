@@ -30,3 +30,17 @@ parser.add_argument('--frames_dir', type=str, default='path to frames') # if you
 parser.add_argument('--feature_save_folder', type=str, default='./features/') #path to save fast features
 ```
 
+
+## Test
+Run the **test.py** in the test folder. We provide the extarcted 2d inputs and slowfast features here. [https://drive.google.com/drive/folders/1-z-X0K3qOPF3swr79kKqmKZjXafwxJu3?usp=sharing]. Use the command to test on the SJTU-PCQA database as follows:
+```
+python -u test.py  \
+--pretrained_model_path ''path/to/ResNet_mean_fast_SJTU.pth'' \
+--path_imgs ''path/to/sjtu_2d/'' \
+--path_3d_features ''path/to/sjtu_slowfast''  \
+--data_info  data_info/sjtu_mos.csv 
+```
+Change the nevessary parameters if you want to test on the WPC database.
+
+
+
