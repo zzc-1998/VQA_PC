@@ -156,7 +156,7 @@ def main(config):
                 ele = ele.permute(0, 2, 1, 3, 4)
                 ele = pack_pathway_output(ele, device)
                 _, fast_feature = model(ele)
-                np.save(config.feature_save_folder + video_name + '/' + 'feature_' + str(idx) + '_fast', fast_feature.to('cpu').numpy())
+                np.save(config.feature_save_folder + video_name + '/' + 'feature_' + str(idx) + '_fast_feature', fast_feature.to('cpu').numpy())
 
         
 if __name__ == '__main__':
