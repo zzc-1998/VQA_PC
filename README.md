@@ -9,7 +9,7 @@ We test the code with Python 3.7 (and higher) on the Windows platform and the co
 You should install the python package open3d and pytorch >= 1.6.
 
 ## Start with Generating 2D Inputs and Frames
-Use the **rotation.py** in folder **rotation**. We have prepared two .ply samples for test.
+Use the **rotation.py** in folder **rotation**. We have prepared two .ply samples for test. You can simply run the **rotation.py** with default parameters for test. The **rotation.py** should generate the 2D Inputs, frames, and videos in the *./imgs*, *./frames*, and *./videos* located in the same dir as **rotation.py**.
 Change the necessray input and output as illustrated:
 
 ```
