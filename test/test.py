@@ -79,7 +79,6 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
 
     # input parameters
-    parser.add_argument('--database', type=str)
     parser.add_argument('--pretrained_model_path', type=str)
     parser.add_argument('--path_imgs', type=str)
     parser.add_argument('--path_3d_features', type=str)
