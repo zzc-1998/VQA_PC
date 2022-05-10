@@ -40,7 +40,11 @@ python -u test.py  \
 --path_3d_features ''path/to/sjtu_slowfast''  \
 --data_info  data_info/sjtu_mos.csv 
 ```
-Change the nevessary parameters if you want to test on the WPC database.
+Change the necessary parameters if you want to test on the WPC database.
+
+
+## Train
+To be continued...
 
 
 
