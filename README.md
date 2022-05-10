@@ -38,9 +38,10 @@ python -u test.py  \
 --pretrained_model_path ''path/to/ResNet_mean_fast_SJTU.pth'' \
 --path_imgs ''path/to/sjtu_2d/'' \
 --path_3d_features ''path/to/sjtu_slowfast''  \
---data_info  data_info/sjtu_mos.csv 
+--data_info  data_info/sjtu_mos.csv \
+--output_csv_path sjtu_prediction.csv 
 ```
-Change the necessary parameters if you want to test on the WPC database.
+The predicted results are saved in .csv file. Change the necessary parameters if you want to test on the WPC database.
 
 
 ## Train
