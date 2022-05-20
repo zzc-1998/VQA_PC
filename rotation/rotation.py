@@ -70,7 +70,7 @@ def camera_rotation(path, img_path,frame_path,video_path,frame_index):
 def projection(path, img_path, frame_path, video_path, frame_index):
     objs = os.listdir(path)
     for obj in objs:
-        one_object_path = path + obj
+        one_object_path = os.path.join(path,obj)
         print(obj)
         camera_rotation(one_object_path,  generate_dir(os.path.join(img_path,obj)),   generate_dir(os.path.join(frame_path,obj)),  generate_dir(os.path.join(video_path,obj)), frame_index)
 
