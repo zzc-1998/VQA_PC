@@ -45,7 +45,56 @@ The predicted results are saved in .csv file. Change the necessary parameters if
 
 
 ## Train
-Coming...
+To begin training, please download the images and slowfast features from [https://drive.google.com/drive/folders/1-z-X0K3qOPF3swr79kKqmKZjXafwxJu3?usp=sharing] and unzip the files to .train/database/:
+```
+train----database------sjtu_2d---hhi_0.ply---005.png
+                   |                        -035.png
+                   |                        -065.png
+                   |                        -095.png
+                   |---sjtu_datainfo
+                   |---sjtu_slowfast---hhi_0---feature_0_fast_feature.npy
+                                            ---feature_1_fast_feature.npy
+                                            ---feature_2_fast_feature.npy
+                                            ---feature_3_fast_feature.npy
+                   |---wpc_2d
+                   |---wpc_datainfo
+                   |---wpc_slowfast
+                                                                      
+```
+Run the training model on the SJTU-PCQA and WPC databases by using the following command:
+```
+CUDA_VISIBLE_DEVICES=0 python -u train.py \
+ --database SJTU \
+ --model_name  ResNet_mean_with_fast \
+ --split_num 9 \
+ --conv_base_lr 0.00004 \
+ --decay_ratio 0.9 \
+ --decay_interval 10 \
+ --train_batch_size 32 \
+ --num_workers 6 \
+ --epochs 30 \
+ --split_num 9 \
+ --ckpt_path ckpts \
+ >> logs/sjtu.log  
+```
+```
+CUDA_VISIBLE_DEVICES=0 python -u train.py \
+ --database WPC \
+ --model_name  ResNet_mean_with_fast \
+ --conv_base_lr 0.00005 \
+ --decay_ratio 0.9 \
+ --decay_interval 10 \
+ --train_batch_size 32 \
+ --num_workers 6 \
+ --epochs 30 \
+ --split_num 5 \
+ >> logs/wpc.log  
+```
+
+# Citation
+If you find our work useful, please cite our paper as:
+```
+```
 
 
 
