@@ -47,18 +47,19 @@ The predicted results are saved in .csv file. Change the necessary parameters if
 ## Train
 To begin training, please download the images and slowfast features from [google drive here](https://drive.google.com/drive/folders/1-z-X0K3qOPF3swr79kKqmKZjXafwxJu3?usp=sharing) and unzip the files to .train/database/:
 ```
-train----database------sjtu_2d---hhi_0.ply--|-005.png
-                   |                        |-035.png
-                   |                        |-065.png
-                   |                        |-095.png
-                   |---sjtu_datainfo
-                   |---sjtu_slowfast---hhi_0--|-feature_0_fast_feature.npy
-                                              |-feature_1_fast_feature.npy
-                                              |-feature_2_fast_feature.npy
-                                              |-feature_3_fast_feature.npy
-                   |---wpc_2d
-                   |---wpc_datainfo
-                   |---wpc_slowfast
+├──train──database├──sjtu_2d
+                      ├──hhi_0.ply├──005.png
+                      └──...      └──035.png
+                                  └──065.png
+                                  └──965.png
+                  └──sjtu_datainfo
+                  └──sjtu_slowfast├──hhi_0├──feature_0_fast_feature.npy
+                                  └──...  └──feature_1_fast_feature.npy
+                                          └──feature_2_fast_feature.npy
+                                          └──feature_3_fast_feature.npy
+                  └──wpc_2d
+                  └──wpc_datainfo
+                  └──wpc_slowfast
                                                                       
 ```
 Run the training model on the SJTU-PCQA and WPC databases by using the following command:
