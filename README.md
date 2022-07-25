@@ -32,7 +32,7 @@ parser.add_argument('--feature_save_folder', type=str, default='./features/') #p
 
 
 ## Test
-Run the **test.py** in the test folder. We provide the trained checkpoint, extarcted 2d inputs, and slowfast features [here](https://drive.google.com/drive/folders/1-z-X0K3qOPF3swr79kKqmKZjXafwxJu3?usp=sharing). Use the command to test on the SJTU-PCQA database as follows:
+Run the **test.py** in the test folder. We provide the trained checkpoint, extarcted 2d inputs, and slowfast features [google drive here](https://drive.google.com/drive/folders/1-z-X0K3qOPF3swr79kKqmKZjXafwxJu3?usp=sharing). Use the command to test on the SJTU-PCQA database as follows:
 ```
 python -u test.py  \
 --pretrained_model_path ''path/to/ResNet_mean_fast_SJTU.pth'' \
@@ -45,7 +45,7 @@ The predicted results are saved in .csv file. Change the necessary parameters if
 
 
 ## Train
-To begin training, please download the images and slowfast features from [https://drive.google.com/drive/folders/1-z-X0K3qOPF3swr79kKqmKZjXafwxJu3?usp=sharing] and unzip the files to .train/database/:
+To begin training, please download the images and slowfast features from [google drive here](https://drive.google.com/drive/folders/1-z-X0K3qOPF3swr79kKqmKZjXafwxJu3?usp=sharing) and unzip the files to .train/database/:
 ```
 train----database------sjtu_2d---hhi_0.ply--|-005.png
                    |                        |-035.png
