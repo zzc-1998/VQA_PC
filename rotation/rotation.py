@@ -65,7 +65,8 @@ def camera_rotation(path, img_path,frame_path,video_path,frame_index):
     end = time.time()
     print("time consuming: ",end-start)
     vis.destroy_window()
-
+    del ctrl
+    del vis
 
 def projection(path, img_path, frame_path, video_path, frame_index):
     objs = os.listdir(path)
