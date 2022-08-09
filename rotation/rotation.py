@@ -28,9 +28,9 @@ def camera_rotation(path, img_path,frame_path,video_path,frame_index):
     ctrl = vis.get_view_control()
     tmp = 0
     interval = 5.82
-    fps = 30 
-    size = (405, 224) 
-    video = cv2.VideoWriter(video_path + '/' + 'video.avi', cv2.VideoWriter_fourcc('I', '4', '2', '0'), fps, size)
+    #fps = 30 
+    #size = (405, 224) 
+    #video = cv2.VideoWriter(video_path + '/' + 'video.avi', cv2.VideoWriter_fourcc('I', '4', '2', '0'), fps, size)
     # interval represent rotation interval per degree
     # 12 * interval indicates 12 degreee
     start = time.time()
@@ -60,7 +60,7 @@ def camera_rotation(path, img_path,frame_path,video_path,frame_index):
         img.save(frame_path + '/'+str(tmp).zfill(3)+'.png')
 
         # save videos
-        video.write(cv2.cvtColor(np.asarray(img),cv2.COLOR_RGB2BGR))
+        #video.write(cv2.cvtColor(np.asarray(img),cv2.COLOR_RGB2BGR))
 
     end = time.time()
     print("time consuming: ",end-start)
