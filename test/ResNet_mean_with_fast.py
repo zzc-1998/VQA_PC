@@ -157,25 +157,12 @@ class ResNet(nn.Module):
         self.layer4 = self._make_layer(block, 512, layers[3], stride=2,
                                        dilate=replace_stride_with_dilation[2])
 
-        # self.hyper1_1 = self.hyper_structure1(64,256)
-        # self.hyper2_1 = self.hyper_structure2(256,512)
-        # self.hyper3_1 = self.hyper_structure2(512,1024)
-        # self.hyper4_1 = self.hyper_structure2(1024,2048)
-
-        # self.hyper2_2 = self.hyper_structure2(256,512)
-        # self.hyper3_2 = self.hyper_structure2(512,1024)
-        # self.hyper4_2 = self.hyper_structure2(1024,2048)
-
-        # self.hyper3_3 = self.hyper_structure2(512,1024)
-        # self.hyper4_3 = self.hyper_structure2(1024,2048)
-
-        # self.hyper4_4 = self.hyper_structure2(1024,2048)
-
+        self.bn_img = nn.BatchNorm1d(128)
+        self.bn_video = nn.BatchNorm1d(128)
         self.avgpool = nn.AdaptiveAvgPool2d((1, 1))
         self.adjust1 = nn.Linear(2048,128)
         self.adjust2 = nn.Linear(256,128)
         self.quality = nn.Linear(128+128,1)
-        #self.fc2 = nn.Linear(512,1)
         
         
 
@@ -248,47 +235,32 @@ class ResNet(nn.Module):
         return hyper_block
 
 
-    def forward(self, x, x_3D_features):
+    def forward(self, x, x_fast_features):
         # See note [TorchScript super()]
         x_size = x.shape
-        x_3D_features_size = x_3D_features.shape
+        x_fast_features_size = x_fast_features.shape
         x = x.view(-1, x_size[2], x_size[3], x_size[4])
-        x_3D_features = x_3D_features.view(-1, x_3D_features_size[2])
+        x_fast_features = x_fast_features.view(-1, x_fast_features_size[2])
 
         x = self.conv1(x)
         x = self.bn1(x)
         x = self.relu(x)
         x = self.maxpool(x)
 
-        # x_hyper1 = self.hyper1_1(x)
         x = self.layer1(x)
-        # x_hyper1 = self.hyper2_1(x_hyper1+x)
-        # x_hyper2 = self.hyper2_2(x)
         x = self.layer2(x)
-        # x_hyper1 = self.hyper3_1(x_hyper1+x)
-        # x_hyper2 = self.hyper3_2(x_hyper2+x)
-        # x_hyper3 = self.hyper3_3(x)
         x = self.layer3(x)
-        # x_hyper1 = self.hyper4_1(x_hyper1+x)
-        # x_hyper2 = self.hyper4_2(x_hyper2+x)
-        # x_hyper3 = self.hyper4_3(x_hyper3+x)       
-        # x_hyper4 = self.hyper4_4(x)
+
 
         x = self.layer4(x)
 
-        # x = x+x_hyper1+x_hyper2+x_hyper3+x_hyper4
 
         x_avg = self.avgpool(x)
-        #x_std = global_std_pool2d(x)
-        # x = torch.cat((x_avg, x_std), dim = 1)
-        # x = torch.flatten(x, 1)
-        # x = torch.cat((x, x_3D_features), dim=1)
         x = torch.flatten(x_avg, 1)
-        x = torch.cat((self.adjust1(x), self.adjust2(x_3D_features)), dim=1)
+        x = torch.cat((self.bn_img((self.adjust1(x))), self.bn_video(self.adjust2(x_fast_features))), dim=1)
    
 
         output = self.quality(x)
-        #output = self.fc2(output)
         output = output.view(x_size[0],x_size[1])
         output = torch.mean(output,dim=1)
         return output
@@ -345,7 +317,8 @@ def resnet50(pretrained=False, progress=True, **kwargs):
     if pretrained:
         # model.load_state_dict(model_zoo.load_url(model_urls['resnet50']))
         model_dict = model.state_dict()
-        #pre_train_model = model_zoo.load_url(model_urls['resnet50'])
+        pre_train_model = model_zoo.load_url(model_urls['resnet50'])
+        # pre_train_model = torch.load('./base_ckpts/ResNet_mean_std_MTL_epoch_30_accu_0.963589.pth')
         # print (pre_train_model.items())
         pre_train_model = {k:v for k,v in pre_train_model.items() if k in model_dict and not ('branch_' in k)}
         model_dict.update(pre_train_model)
