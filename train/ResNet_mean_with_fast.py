@@ -157,7 +157,8 @@ class ResNet(nn.Module):
         self.layer4 = self._make_layer(block, 512, layers[3], stride=2,
                                        dilate=replace_stride_with_dilation[2])
 
-
+        self.bn_img = nn.BatchNorm1d(128)
+        self.bn_video = nn.BatchNorm1d(128)
         self.avgpool = nn.AdaptiveAvgPool2d((1, 1))
         self.adjust1 = nn.Linear(2048,128)
         self.adjust2 = nn.Linear(256,128)
@@ -256,7 +257,7 @@ class ResNet(nn.Module):
 
         x_avg = self.avgpool(x)
         x = torch.flatten(x_avg, 1)
-        x = torch.cat((self.adjust1(x), self.adjust2(x_fast_features)), dim=1)
+        x = torch.cat((self.bn_img((self.adjust1(x))), self.bn_video(self.adjust2(x_fast_features))), dim=1)
    
 
         output = self.quality(x)
