@@ -69,10 +69,11 @@ def camera_rotation(path, img_path,frame_path,video_path,frame_index):
     del vis
 
 def projection(path, img_path, frame_path, video_path, frame_index):
-    objs = os.listdir(path)
-    for obj in objs:
-        one_object_path = os.path.join(path,obj)
-        print(obj)
+    # find all the objects 
+    objs = os.walk(path)  
+    for path,dir_list,file_list in objs:  
+      for obj in file_list:  
+        one_object_path = os.path.join(path, obj)
         camera_rotation(one_object_path,  generate_dir(os.path.join(img_path,obj)),   generate_dir(os.path.join(frame_path,obj)),  generate_dir(os.path.join(video_path,obj)), frame_index)
 
 
@@ -96,7 +97,7 @@ if __name__ == '__main__':
     parser.add_argument('--path', type=str, default = './ply/') #path to the file that contain .ply models
     parser.add_argument('--img_path', type=str, default = './imgs/') # path to the generated 2D input
     parser.add_argument('--frame_path', type=str, default = './frames/') # path to the generated frames
-    parser.add_argument('--video_path', type=str, default = './videos/') # path to the generated videos
+    parser.add_argument('--video_path', type=str, default = './videos/') # path to the generated videos, disable by default
     parser.add_argument('--frame_index', type=int, default= 5 )
     config = parser.parse_args()
 
