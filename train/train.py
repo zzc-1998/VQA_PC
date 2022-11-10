@@ -42,6 +42,7 @@ def main(config):
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     best_all = np.zeros([config.split_num, 4])
+    final_all = np.zeros([config.split_num, 4])
     for split in range(config.split_num):
         # model
         if config.model_name == 'ResNet_mean_with_fast':
@@ -151,8 +152,9 @@ def main(config):
                 test_RMSE = np.sqrt(((y_output_logistic-y_test) ** 2).mean())
                 test_KROCC = scipy.stats.kendalltau(y_output, y_test)[0]
                 print("Test results: SROCC={:.4f}, KROCC={:.4f}, PLCC={:.4f}, RMSE={:.4f}".format(test_SROCC, test_KROCC, test_PLCC, test_RMSE))
-
-
+                final[0:4] = [test_SROCC, test_KROCC, test_PLCC, test_RMSE]
+                final_all[split, :] = final
+                
                 if test_SROCC > best_test_criterion:
                         print("Update best model using best_val_criterion ")
                         torch.save(model.state_dict(), config.ckpt_path + '/' + config.model_name +'_' + config.database +'_' + str(split+1) + '_' + 'best.pth')
@@ -162,12 +164,11 @@ def main(config):
                         best_all[split, :] = best
                         print("The best Test results: SROCC={:.4f}, KROCC={:.4f}, PLCC={:.4f}, RMSE={:.4f}".format(test_SROCC, test_KROCC, test_PLCC, test_RMSE))
         print('Training completed.')
-        print("The best Val results: SROCC={:.4f}, KROCC={:.4f}, PLCC={:.4f}, RMSE={:.4f}".format(best[0], best[1], best[2], best[3]))
         print('*************************************************************************************************************************')
-    print(best_all)
-    best_median = np.median(best_all, 0)
+    #print(final_all)
+    final_median = np.median(final_all, 0)
     print('*************************************************************************************************************************')
-    print("The median val results: SROCC={:.4f}, KROCC={:.4f}, PLCC={:.4f}, RMSE={:.4f}".format(best_median[0], best_median[1], best_median[2], best_median[3]))
+    print("The median val results: SROCC={:.4f}, KROCC={:.4f}, PLCC={:.4f}, RMSE={:.4f}".format(final_median[0], final_median[1], final_median[2], final_median[3]))
     print('*************************************************************************************************************************')
         
 if __name__ == '__main__':
