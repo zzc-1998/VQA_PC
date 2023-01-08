@@ -1,5 +1,3 @@
-
-
 # -*- coding: utf-8 -*-
 
 import argparse
@@ -42,7 +40,6 @@ def main(config):
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     best_all = np.zeros([config.split_num, 4])
-    final_all = np.zeros([config.split_num, 4])
     for split in range(config.split_num):
         # model
         if config.model_name == 'ResNet_mean_with_fast':
@@ -99,7 +96,6 @@ def main(config):
         best_test_criterion = -1  # SROCC min
         best = np.zeros(4)
 
-        n_train = len(trainset)
         n_test = len(testset)
 
         print('Starting training:')
@@ -109,7 +105,6 @@ def main(config):
             model.train()
             batch_losses = []
             batch_losses_each_disp = []
-            session_start_time = time.time()
             for i, (video, features, labels, _) in enumerate(train_loader):
 
                 video = video.to(device)
@@ -155,18 +150,22 @@ def main(config):
                 
                 if test_SROCC > best_test_criterion:
                         print("Update best model using best_val_criterion ")
-                        torch.save(model.state_dict(), config.ckpt_path + '/' + config.model_name +'_' + config.database +'_' + str(split+1) + '_' + 'best.pth')
-                        # scio.savemat(trained_model_file+'.mat',{'y_pred':y_pred,'y_test':y_test})
+                        #torch.save(model.state_dict(), config.ckpt_path + '/' + config.model_name +'_' + config.database +'_' + str(split+1) + '_' + 'best.pth')
                         best[0:4] = [test_SROCC, test_KROCC, test_PLCC, test_RMSE]
                         best_test_criterion = test_SROCC  # update best val SROCC
                         best_all[split, :] = best
                         print("The best Test results: SROCC={:.4f}, KROCC={:.4f}, PLCC={:.4f}, RMSE={:.4f}".format(test_SROCC, test_KROCC, test_PLCC, test_RMSE))
+                else:
+                    print("The best Test results: SROCC={:.4f}, KROCC={:.4f}, PLCC={:.4f}, RMSE={:.4f}".format(test_SROCC, test_KROCC, test_PLCC, test_RMSE))
+                
+                print('-------------------------------------------------------------------------------------------------------------------')
         print('Training completed.')
+        print("The best Test results: SROCC={:.4f}, KROCC={:.4f}, PLCC={:.4f}, RMSE={:.4f}".format(best[0], best[1], best[2], best[3]))
         print('*************************************************************************************************************************')
-    
-    perforamnce = np.mean(best_all, 0)
+    print(best_all)
+    best_median = np.median(best_all, 0)
     print('*************************************************************************************************************************')
-    print("The median val results: SROCC={:.4f}, KROCC={:.4f}, PLCC={:.4f}, RMSE={:.4f}".format(perforamnce[0], perforamnce[1], perforamnce[2], perforamnce[3]))
+    print("The mean performance: SROCC={:.4f}, KROCC={:.4f}, PLCC={:.4f}, RMSE={:.4f}".format(best_median[0], best_median[1], best_median[2], best_median[3]))
     print('*************************************************************************************************************************')
         
 if __name__ == '__main__':
@@ -198,5 +197,3 @@ if __name__ == '__main__':
     config = parser.parse_args()
 
     main(config)
-
-
