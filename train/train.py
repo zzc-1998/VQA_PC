@@ -162,10 +162,10 @@ def main(config):
         print('Training completed.')
         print("The best Test results: SROCC={:.4f}, KROCC={:.4f}, PLCC={:.4f}, RMSE={:.4f}".format(best[0], best[1], best[2], best[3]))
         print('*************************************************************************************************************************')
-    print(best_all)
-    best_median = np.median(best_all, 0)
+    
+    performance = np.mean(best_all, 0)
     print('*************************************************************************************************************************')
-    print("The mean performance: SROCC={:.4f}, KROCC={:.4f}, PLCC={:.4f}, RMSE={:.4f}".format(best_median[0], best_median[1], best_median[2], best_median[3]))
+    print("The mean performance: SROCC={:.4f}, KROCC={:.4f}, PLCC={:.4f}, RMSE={:.4f}".format(performance[0], performance[1], performance[2], performance[3]))
     print('*************************************************************************************************************************')
         
 if __name__ == '__main__':
