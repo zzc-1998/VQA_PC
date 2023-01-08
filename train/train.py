@@ -151,9 +151,7 @@ def main(config):
                 test_SROCC = stats.spearmanr(y_output, y_test)[0]
                 test_RMSE = np.sqrt(((y_output_logistic-y_test) ** 2).mean())
                 test_KROCC = scipy.stats.kendalltau(y_output, y_test)[0]
-                print("Test results: SROCC={:.4f}, KROCC={:.4f}, PLCC={:.4f}, RMSE={:.4f}".format(test_SROCC, test_KROCC, test_PLCC, test_RMSE))
-                final[0:4] = [test_SROCC, test_KROCC, test_PLCC, test_RMSE]
-                final_all[split, :] = final
+                
                 
                 if test_SROCC > best_test_criterion:
                         print("Update best model using best_val_criterion ")
@@ -165,10 +163,10 @@ def main(config):
                         print("The best Test results: SROCC={:.4f}, KROCC={:.4f}, PLCC={:.4f}, RMSE={:.4f}".format(test_SROCC, test_KROCC, test_PLCC, test_RMSE))
         print('Training completed.')
         print('*************************************************************************************************************************')
-    #print(final_all)
-    final_median = np.median(final_all, 0)
+    
+    perforamnce = np.mean(best_all, 0)
     print('*************************************************************************************************************************')
-    print("The median val results: SROCC={:.4f}, KROCC={:.4f}, PLCC={:.4f}, RMSE={:.4f}".format(final_median[0], final_median[1], final_median[2], final_median[3]))
+    print("The median val results: SROCC={:.4f}, KROCC={:.4f}, PLCC={:.4f}, RMSE={:.4f}".format(perforamnce[0], perforamnce[1], perforamnce[2], perforamnce[3]))
     print('*************************************************************************************************************************')
         
 if __name__ == '__main__':
