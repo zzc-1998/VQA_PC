@@ -154,9 +154,9 @@ def main(config):
                         best[0:4] = [test_SROCC, test_KROCC, test_PLCC, test_RMSE]
                         best_test_criterion = test_SROCC  # update best val SROCC
                         best_all[split, :] = best
-                        print("The best Test results: SROCC={:.4f}, KROCC={:.4f}, PLCC={:.4f}, RMSE={:.4f}".format(test_SROCC, test_KROCC, test_PLCC, test_RMSE))
+                        print("The best Test results: SROCC={:.4f}, KROCC={:.4f}, PLCC={:.4f}, RMSE={:.4f}".format(best[0], best[1], best[2], best[3]))
                 else:
-                    print("The best Test results: SROCC={:.4f}, KROCC={:.4f}, PLCC={:.4f}, RMSE={:.4f}".format(test_SROCC, test_KROCC, test_PLCC, test_RMSE))
+                    print("The best Test results: SROCC={:.4f}, KROCC={:.4f}, PLCC={:.4f}, RMSE={:.4f}".format(best[0], best[1], best[2], best[3]))
                 
                 print('-------------------------------------------------------------------------------------------------------------------')
         print('Training completed.')
