@@ -97,7 +97,7 @@ If you find our work useful, please cite our paper as:
 ```
 @article{zhang2022treating,
   title={Treating Point Cloud as Moving Camera Videos: A No-Reference Quality Assessment Metric},
-  author={Zhang, Zicheng and Sun, Wei and Zhu Yucheng, Min, Xiongkuo and Wu Wei, and Chen Ying, and Zhai, Guangtao},
+  author={Zhang, Zicheng and Sun, Wei and Zhu, Yucheng and Min, Xiongkuo and Wu, Wei and Chen, Ying and Zhai, Guangtao},
   journal={arXiv preprint arXiv:2208.14085},
   year={2022}
 }
