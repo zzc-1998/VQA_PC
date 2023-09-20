@@ -2,18 +2,13 @@ import numpy as np
 import time
 import open3d as o3d
 import os
-import math
-import numpy as np
-import open3d as o3d
-import time
 from PIL import Image
 from torchvision import transforms
 import cv2
 import argparse
 
 def generate_dir(path):
-    if not os.path.exists(path):
-        os.mkdir(path)
+    os.makedirs(path, exist_ok=True)
     return path
 
 # Camera Rotation
