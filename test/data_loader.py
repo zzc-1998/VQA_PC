@@ -9,7 +9,7 @@ from torch.utils import data
 
 class VideoDataset_NR_image_with_fast_features(data.Dataset):
     """Read data from the original dataset for feature extraction"""
-    def __init__(self, data_dir, data_dir_3D , datainfo_path, transform, crop_size, frame_index=5, image_length_read = 4):
+    def __init__(self, data_dir, data_dir_3D , datainfo_path, transform, crop_size, frame_index=7, image_length_read = 4):
         super(VideoDataset_NR_image_with_fast_features, self).__init__()
                                         
         # column_names = ['vid_name', 'scene', 'dis_type_level']
