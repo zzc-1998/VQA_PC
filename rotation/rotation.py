@@ -98,7 +98,7 @@ if __name__ == '__main__':
     parser.add_argument('--img_path', type=str, default = './imgs/') # path to the generated 2D input
     parser.add_argument('--frame_path', type=str, default = './frames/') # path to the generated frames
     parser.add_argument('--video_path', type=str, default = './videos/') # path to the generated videos, disable by default
-    parser.add_argument('--frame_index', type=int, default= 5 )
+    parser.add_argument('--frame_index', type=int, default= 7 )
     config = parser.parse_args()
 
     main(config)
