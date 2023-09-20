@@ -185,7 +185,7 @@ if __name__ == '__main__':
     parser.add_argument('--epochs', type=int, default=30)
     parser.add_argument('--split_num', type=int, default=9)
     parser.add_argument('--crop_size', type=int, default=224)
-    parser.add_argument('--frame_index', type=int, default=5)
+    parser.add_argument('--frame_index', type=int, default=7)
     parser.add_argument('--video_length_read', type=int, default=4)
 
 
