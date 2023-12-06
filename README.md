@@ -1,5 +1,5 @@
 # VQA_PC
-Treating point cloud as moving camera videos: a no-reference quality assessment metric 
+Official repo for "Evaluating Point Cloud from Moving Camera Videos: A No-Reference Metric", which has been accepted by IEEE Transactions on Multimedia.
 
 <img align="center" src="https://github.com/zzc-1998/VQA_PC/blob/main/video.gif">
 
@@ -95,11 +95,11 @@ CUDA_VISIBLE_DEVICES=0 python -u train.py \
 # Citation
 If you find our work useful, please cite our paper as:
 ```
-@article{zhang2022treating,
-  title={Treating Point Cloud as Moving Camera Videos: A No-Reference Quality Assessment Metric},
+@article{zhang2023treating,
+  title={Evaluating Point Cloud from Moving Camera Videos: A No-Reference Metric},
   author={Zhang, Zicheng and Sun, Wei and Zhu, Yucheng and Min, Xiongkuo and Wu, Wei and Chen, Ying and Zhai, Guangtao},
-  journal={arXiv preprint arXiv:2208.14085},
-  year={2022}
+  journal={IEEE Transactions on Multimedia},
+  year={2023}
 }
 ```
 
