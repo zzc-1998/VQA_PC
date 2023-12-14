@@ -95,7 +95,7 @@ CUDA_VISIBLE_DEVICES=0 python -u train.py \
 # Citation
 If you find our work useful, please cite our paper as:
 ```
-@article{zhang2023treating,
+@article{zhang2023evaluating,
   title={Evaluating Point Cloud from Moving Camera Videos: A No-Reference Metric},
   author={Zhang, Zicheng and Sun, Wei and Zhu, Yucheng and Min, Xiongkuo and Wu, Wei and Chen, Ying and Zhai, Guangtao},
   journal={IEEE Transactions on Multimedia},
